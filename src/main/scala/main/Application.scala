@@ -9,6 +9,5 @@ import models.Grid
 object Application {
   def main(): Unit = {
     val thisGame = new Grid(Utils.populate())
-
   }
 }

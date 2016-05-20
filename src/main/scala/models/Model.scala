@@ -8,5 +8,4 @@ class Cell(val id: Int) {
   val value = 0
 }
 
-class Grid(val board: Map[Int, Cell]) {
-}
+class Grid(val board: Map[Int, Cell]) {}
