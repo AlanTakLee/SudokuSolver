@@ -11,23 +11,21 @@ object Utils {
   }
 
   def checkRowForValue(game: Grid, id: Int): Boolean = {
-    val row = (0 to 9) map ((x: Int) => game.board((id + x) % 9))
     val current = game.board(id)
-
     if (current.value == 0) return true
 
-    val valid = row.filter(_.value > 0)
+    val row = (0 to 8) map ((x: Int) => game.board((id + x) % 9))
+    val valid = row.filter(cell => cell.value > 0 && cell.id != current.id)
     val found = valid.filter(_.value == current.value)
     found.isEmpty
   }
 
   def checkColForValue(game: Grid, id: Int): Boolean = {
-    val column = (0 to 81 by 9) map ((x: Int) => game.board(id + x))
     val current = game.board(id)
-
     if (current.value == 0) return true
 
-    val valid = column.filter(_.value > 0)
+    val column = (0 to 80 by 9) map ((x: Int) => game.board((id + x) % 81))
+    val valid = column.filter(cell => cell.value > 0 && cell.id != current.id)
     val found = valid.filter(_.value == current.value)
     found.isEmpty
   }
