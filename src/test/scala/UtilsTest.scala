@@ -50,4 +50,6 @@ class UtilsTest extends FlatSpec with Matchers {
     y.find(_ == false) should be(None)
     z.find(_ == false) should be(None)
   }
+  // TODO: make test with bad board
+  // TODO: make test with solved board
 }
