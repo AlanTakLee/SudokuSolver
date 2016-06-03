@@ -14,7 +14,8 @@ object Utils {
     val current = game.board(id)
     if (current.value == 0) return true
 
-    val row = (0 to 8) map ((x: Int) => game.board((id + x) % 9))
+    val rowNumber = id / 9
+    val row = (0 to 8) map ((x: Int) => game.board((rowNumber * 9) + x))
     val valid = row.filter(cell => cell.value > 0 && cell.id != current.id)
     val found = valid.filter(_.value == current.value)
     found.isEmpty

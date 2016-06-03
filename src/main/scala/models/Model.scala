@@ -4,7 +4,7 @@ package models
   * Created by Alan on 20/05/2016.
   */
 class Cell(val id: Int, val value: Int) {
-  var potentials = Set(1, 2, 3, 4, 5, 6, 7, 8, 9)
+  var potentials = Set(1, 2, 3, 4, 5, 6, 7, 8, 9) -- Set(value)
 
   def this(id: Int) {
     this(id, 0)

@@ -19,7 +19,6 @@ class UtilsTest extends FlatSpec with Matchers {
     0, 0, 0, 1, 0, 0, 9, 7, 0
   )
 
-
   "Populate" should "make a grid with 81 cells" in {
     grid.size should be(81)
   }
@@ -40,11 +39,14 @@ class UtilsTest extends FlatSpec with Matchers {
     Utils.Utils.checkColForValue(board, 0) should be(true)
   }
 
-  "Check row and col" should "be true when checking an unsolved board" in {
-    val x = (Stream from 0).zip(testBoardUnsolved).toMap.map(a => a._1 -> new Cell(a))
-    val thisGrid = new Grid(x)
-    val y = x.map(curCell => Utils.Utils.checkColForValue(thisGrid, curCell._1))
-    val z = x.map(curCell => Utils.Utils.checkRowForValue(thisGrid, curCell._1))
+  "Check row and col" should "be true when checking a valid unsolved board" in {
+    val mapping = testBoardUnsolved
+        .zipWithIndex
+        .map(value => value._2 -> new Cell(value._2, value._1))
+        .toMap
+    val thisGrid = new Grid(mapping)
+    val y = thisGrid.board.map(curCell => Utils.Utils.checkColForValue(thisGrid, curCell._1))
+    val z = thisGrid.board.map(curCell => Utils.Utils.checkRowForValue(thisGrid, curCell._1))
     y.find(_ == false) should be(None)
     z.find(_ == false) should be(None)
   }
